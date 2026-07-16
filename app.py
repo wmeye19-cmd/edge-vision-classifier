@@ -146,12 +146,32 @@ def classify_image(image):
 # =====================================================================
 # 4. LAUNCH INTERFACE
 # =====================================================================
+# 💡 Paste your actual profile and project URLs inside these strings:
+GHOST_BLOG_URL = "https://www.williamameyer.com/edge-ai-farm-security-part-1/"
+GITHUB_REPO_URL = "https://github.com/wmeye19-cmd/edge-vision-classifier/"
+LINKEDIN_PROFILE_URL = "https://www.linkedin.com/in/willameyer/"
+
+portfolio_footer = f"""
+---
+### 🌐 Project Ecosystem & Portals
+* 📝 **System Architecture Deep-Dive:** [Read the 3-Part Breakdown on My Blog]({GHOST_BLOG_URL})
+* 💻 **Model Optimization & Pipelines:** [Explore the Codebase on GitHub]({GITHUB_REPO_URL})
+* 💼 **Professional Network:** [Connect with Me on LinkedIn]({LINKEDIN_PROFILE_URL})
+
+_Developed as an edge-native computer vision prototype demonstrating high-efficiency local inference capabilities._
+"""
+
 interface = gr.Interface(
-    fn=classify_image,                   
-    inputs=gr.Image(type="pil"),         
-    outputs=[gr.Label(num_top_classes=3, label="Predictions"), gr.Markdown()], 
-    title="STL10 Image Classifier",
-    description="This classifer is trained on the following: airplanes, birds, cars, cats, deer, dogs, horses, monkeys, ships, and trucks.  Find an image of one of those, use your camera, or find a picture in your gallery to see how well the model works.  3-Tier Escalation Architecture: Full Frame -> Edge crop -> 5-region sweep."
+    fn=classify_image,                       
+    inputs=gr.Image(type="pil"),             
+    outputs=[gr.Label(num_top_classes=3, label="Predictions"), gr.Markdown()],     
+    title="🚜 Localized Edge AI Vision Prototype",
+    description="""
+    This prototype classifies 10 environmental categories: airplanes, birds, cars, cats, deer, dogs, horses, monkeys, ships, and trucks. 
+    
+    ⚡ **3-Tier Escalation Architecture:** Full Frame Pass ➡️ OpenCV Smart Edge Crop ➡️ 5-Zone Quadrant Radar Sweep.
+    """,
+    article=portfolio_footer
 )
 
 interface.launch(ssr_mode=False)
